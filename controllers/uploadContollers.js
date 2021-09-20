@@ -61,6 +61,16 @@ const updateCategory = (req, res)=>{
 	})
 }
 
+const deleteCategory = (req, res)=>{
+	const kitchenId = req.params.id
+	CategorySchemaData.findByIdAndDelete({_id : kitchenId})
+	.then(response =>{
+		res.status(200).json({
+			message : "Item deleted"
+		})
+	})
+}
+
 const createSubCategory = async(req, res)=>{
 
 	const response = new SubCategorySchemaData({
@@ -88,5 +98,6 @@ const createMenu = async(req, res)=>{
 
 
 
-module.exports = {getCategory, createCategory, updateCategory, createSubCategory, createMenu}
+module.exports = {getCategory, createCategory, updateCategory, deleteCategory,
+ createSubCategory, createMenu}
 
